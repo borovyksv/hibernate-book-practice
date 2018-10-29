@@ -1,11 +1,9 @@
 package com.borovyksv;
 
 import com.borovyksv.model.helloworld.Message;
-import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.junit.runners.MethodSorters;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
