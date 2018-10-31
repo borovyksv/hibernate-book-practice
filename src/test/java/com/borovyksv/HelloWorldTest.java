@@ -41,7 +41,6 @@ public class HelloWorldTest {
 
         persistHelloWorldMessage(em);
         List<Message> messages = em.createQuery("select m from Message m").getResultList();
-        assertEquals(1, messages.size());
         Message persistedMessage = messages.get(0);
         String text = persistedMessage.getText();
         assertEquals(text, "Hello world!");
