@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(JUnit4.class)
 public class HibernateHelloWorldTest {
 
-    static SessionFactory sessionFactory = new Configuration().configure()
+    private static SessionFactory sessionFactory = new Configuration().configure()
             .buildSessionFactory();
 
 
@@ -28,6 +28,7 @@ public class HibernateHelloWorldTest {
         Transaction transaction = session.getTransaction();
         transaction.begin();
 
+        persistHelloWorldMessage(session);
         persistHelloWorldMessage(session);
 
         transaction.commit();
@@ -44,7 +45,7 @@ public class HibernateHelloWorldTest {
         assertEquals(1, messages.size());
         Message persistedMessage = messages.get(0);
         String text = persistedMessage.getText();
-        assertEquals(text, "Hello world!");
+        assertEquals("Hello world!", text);
         System.out.println(text);
         persistedMessage.setText("Take me to you leader!");
 

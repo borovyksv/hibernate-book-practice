@@ -1,6 +1,9 @@
 package com.borovyksv.model.helloworld;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +15,7 @@ import javax.persistence.Id;
 @Entity
 public class Message {
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "ID_GENERATOR")
     private Long id;
     private String text;
 }

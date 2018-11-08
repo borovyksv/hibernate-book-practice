@@ -11,30 +11,30 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 
 @RunWith(JUnit4.class)
 public class JPAHelloWorldTest {
 
-    static EntityManagerFactory emf = Persistence
+    private static EntityManagerFactory emf = Persistence
             .createEntityManagerFactory("HelloWorld");
 
 
     @Test
-    public void testASave(){
+    public void testASave() {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
         persistHelloWorldMessage(em);
-
+        persistHelloWorldMessage(em);
         tx.commit();
         em.close();
     }
 
     @Test
-    public void testBGetAndDirtyUpdate(){
+    public void testBGetAndDirtyUpdate() {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
@@ -43,7 +43,7 @@ public class JPAHelloWorldTest {
         List<Message> messages = em.createQuery("select m from Message m").getResultList();
         Message persistedMessage = messages.get(0);
         String text = persistedMessage.getText();
-        assertEquals(text, "Hello world!");
+        assertEquals("Hello world!", text);
         System.out.println(text);
         persistedMessage.setText("Take me to you leader!");
 
@@ -55,6 +55,9 @@ public class JPAHelloWorldTest {
     private void persistHelloWorldMessage(EntityManager em) {
         Message message = new Message();
         message.setText("Hello world!");
+        assertNull(message.getId());
         em.persist(message);
+        assertNotNull(message.getId());
+
     }
 }
