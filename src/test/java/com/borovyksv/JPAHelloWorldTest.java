@@ -15,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 
 
 @RunWith(JUnit4.class)
-public class HelloWorldTest {
+public class JPAHelloWorldTest {
 
     static EntityManagerFactory emf = Persistence
             .createEntityManagerFactory("HelloWorld");
@@ -41,7 +41,6 @@ public class HelloWorldTest {
 
         persistHelloWorldMessage(em);
         List<Message> messages = em.createQuery("select m from Message m").getResultList();
-        assertEquals(1, messages.size());
         Message persistedMessage = messages.get(0);
         String text = persistedMessage.getText();
         assertEquals(text, "Hello world!");
