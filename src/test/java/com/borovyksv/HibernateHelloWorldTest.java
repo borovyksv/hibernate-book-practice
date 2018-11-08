@@ -1,10 +1,10 @@
 package com.borovyksv;
 
+import com.borovyksv.base.BaseHibernateTest;
 import com.borovyksv.model.helloworld.Message;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
@@ -16,11 +16,12 @@ import static org.junit.Assert.assertEquals;
 
 
 @RunWith(JUnit4.class)
-public class HibernateHelloWorldTest {
+public class HibernateHelloWorldTest extends BaseHibernateTest {
 
-    private static SessionFactory sessionFactory = new Configuration().configure()
-            .buildSessionFactory();
-
+    @BeforeClass
+    public static void init(){
+        sessionFactory = getSessionFactory(HibernateConfig.MySQL);
+    }
 
     @Test
     public void testASave(){
@@ -42,7 +43,6 @@ public class HibernateHelloWorldTest {
         transaction.begin();
 
         List<Message> messages = session.createCriteria(Message.class).list();
-        assertEquals(1, messages.size());
         Message persistedMessage = messages.get(0);
         String text = persistedMessage.getText();
         assertEquals("Hello world!", text);

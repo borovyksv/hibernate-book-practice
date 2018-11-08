@@ -1,25 +1,26 @@
 package com.borovyksv;
 
+import com.borovyksv.base.BaseJpaTest;
 import com.borovyksv.model.helloworld.Message;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import java.util.List;
 
 import static org.junit.Assert.*;
 
 
 @RunWith(JUnit4.class)
-public class JPAHelloWorldTest {
+public class JPAHelloWorldTest extends BaseJpaTest {
 
-    private static EntityManagerFactory emf = Persistence
-            .createEntityManagerFactory("HelloWorld");
-
+    @BeforeClass
+    public static void init(){
+        emf = getEntityManagerFactory(JpaConfig.MySQL);
+    }
 
     @Test
     public void testASave() {
