@@ -28,8 +28,8 @@ public class JPAHelloWorldTest extends BaseJpaTest {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        persistHelloWorldMessage(em);
-        persistHelloWorldMessage(em);
+        TestHelper.persistHelloWorldMessage(em);
+        TestHelper.persistHelloWorldMessage(em);
         tx.commit();
         em.close();
     }
@@ -40,8 +40,8 @@ public class JPAHelloWorldTest extends BaseJpaTest {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        persistHelloWorldMessage(em);
-        List<Message> messages = em.createQuery("select m from Message m").getResultList();
+        TestHelper.persistHelloWorldMessage(em);
+        List<Message> messages = em.createQuery("select m from message m").getResultList();
         Message persistedMessage = messages.get(0);
         String text = persistedMessage.getText();
         assertEquals("Hello world!", text);
@@ -52,13 +52,4 @@ public class JPAHelloWorldTest extends BaseJpaTest {
         em.close();
     }
 
-
-    private void persistHelloWorldMessage(EntityManager em) {
-        Message message = new Message();
-        message.setText("Hello world!");
-        assertNull(message.getId());
-        em.persist(message);
-        assertNotNull(message.getId());
-
-    }
 }
