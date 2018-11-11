@@ -1,7 +1,6 @@
 package com.borovyksv.base;
 
 import com.borovyksv.model.helloworld.Message;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -9,14 +8,13 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
 import java.util.List;
-import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
+@SuppressWarnings("all")
 public abstract class BaseHibernateTest {
     protected static SessionFactory sessionFactory;
 
-    @SuppressWarnings("all")
     protected List<Message> getAllMessages(Session session) {
         return session.createCriteria(Message.class).list();
     }
@@ -29,8 +27,11 @@ public abstract class BaseHibernateTest {
         H2("h2.cfg.xml"), MySQL("mysql.cfg.xml");
         private String configFileName;
 
-        HibernateConfig(String configFileName) { this.configFileName = configFileName; }
+        HibernateConfig(String configFileName) {
+            this.configFileName = configFileName;
+        }
     }
+
     protected static SessionFactory getSessionFactory() {
         return getSessionFactory(HibernateConfig.H2);
     }
@@ -39,7 +40,7 @@ public abstract class BaseHibernateTest {
         return new Configuration().configure(HibernateConfig.configFileName).buildSessionFactory();
     }
 
-    protected  <T> T executeInTransaction(Function<Session, T> function){
+    protected <T> T executeInTransaction(Function<Session, T> function) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.getTransaction();
         transaction.begin();
@@ -51,7 +52,7 @@ public abstract class BaseHibernateTest {
         return apply;
     }
 
-    protected void executeInTransaction(Consumer<Session> consumer){
+    protected void executeInTransaction(Consumer<Session> consumer) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.getTransaction();
         transaction.begin();

@@ -2,20 +2,14 @@ package com.borovyksv;
 
 import com.borovyksv.base.BaseHibernateTest;
 import com.borovyksv.model.helloworld.Message;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+import com.borovyksv.util.TestUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.time.Year;
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -26,21 +20,21 @@ public class HibernateHelloWorldTest extends BaseHibernateTest {
 
     @BeforeClass
     public static void init() {
-        sessionFactory = getSessionFactory(HibernateConfig.MySQL);
+        sessionFactory = getSessionFactory(HibernateConfig.H2);
     }
 
     @Test
     public void testSave() {
         executeInTransaction(session -> {
-            TestHelper.persistHelloWorldMessage(session);
-            TestHelper.persistHelloWorldMessage(session);
+            TestUtil.persistHelloWorldMessage(session);
+            TestUtil.persistHelloWorldMessage(session);
         });
     }
 
     @Test
     public void testGetAndDirtyUpdate() {
         executeInTransaction(session -> {
-            Message persistedMessage = TestHelper.persistHelloWorldMessage(session);
+            Message persistedMessage = TestUtil.persistHelloWorldMessage(session);
             String text = persistedMessage.getText();
             System.out.println(persistedMessage.getPayload().getTitle());
 //
@@ -54,7 +48,7 @@ public class HibernateHelloWorldTest extends BaseHibernateTest {
         LocalDateTime newDate = LocalDateTime.of(2020, Month.DECEMBER, 1, 12, 0);
 
         Message savedMessage = executeInTransaction(session -> {
-            Message persistedMessage = TestHelper.persistHelloWorldMessage(session);
+            Message persistedMessage = TestUtil.persistHelloWorldMessage(session);
             persistedMessage.setCreated(newDate);
             return persistedMessage;
         });

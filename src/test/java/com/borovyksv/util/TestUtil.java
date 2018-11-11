@@ -1,18 +1,16 @@
-package com.borovyksv;
+package com.borovyksv.util;
 
 import com.borovyksv.model.helloworld.Message;
 import com.borovyksv.model.helloworld.Payload;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDateTime;
-import java.time.Month;
 
-public class TestHelper {
+public class TestUtil {
 
-    static Message persistHelloWorldMessage(EntityManager em) {
+    public static Message persistHelloWorldMessage(EntityManager em) {
         Message message = new Message();
         message.setText("Hello world!");
-        message.setPayload(new Payload(true,"Hello-title", "Hello-data"));
+        message.setPayload(new Payload("Hello-title", "Hello-data"));
         em.persist(message);
         return message;
     }

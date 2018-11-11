@@ -2,6 +2,7 @@ package com.borovyksv;
 
 import com.borovyksv.base.BaseJpaTest;
 import com.borovyksv.model.helloworld.Message;
+import com.borovyksv.util.TestUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +20,7 @@ public class JPAHelloWorldTest extends BaseJpaTest {
 
     @BeforeClass
     public static void init(){
-        emf = getEntityManagerFactory(JpaConfig.MySQL);
+        emf = getEntityManagerFactory(JpaConfig.H2);
     }
 
     @Test
@@ -28,8 +29,8 @@ public class JPAHelloWorldTest extends BaseJpaTest {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        TestHelper.persistHelloWorldMessage(em);
-        TestHelper.persistHelloWorldMessage(em);
+        TestUtil.persistHelloWorldMessage(em);
+        TestUtil.persistHelloWorldMessage(em);
         tx.commit();
         em.close();
     }
@@ -40,7 +41,7 @@ public class JPAHelloWorldTest extends BaseJpaTest {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
 
-        TestHelper.persistHelloWorldMessage(em);
+        TestUtil.persistHelloWorldMessage(em);
         List<Message> messages = em.createQuery("select m from message m").getResultList();
         Message persistedMessage = messages.get(0);
         String text = persistedMessage.getText();

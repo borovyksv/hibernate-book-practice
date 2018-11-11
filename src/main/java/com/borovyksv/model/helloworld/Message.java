@@ -20,9 +20,15 @@ public class Message {
     private Long id;
     private String text;
     private Payload payload;
-//    private Payload hiddenPayload;
+
+    @AttributeOverrides({
+            @AttributeOverride(name = "title", column = @Column(name = "hidden_title")),
+            @AttributeOverride(name = "data", column = @Column(name = "hidden_data"))
+    })
+    private Payload hiddenPayload;
 
     @UpdateTimestamp
+    @Column(name = "last_modified")
     private LocalDateTime lastModified;
 
     @Column(updatable = false)
