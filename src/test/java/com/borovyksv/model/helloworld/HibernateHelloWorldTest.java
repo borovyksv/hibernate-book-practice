@@ -1,21 +1,20 @@
-package com.borovyksv;
+package com.borovyksv.model.helloworld;
 
 import com.borovyksv.base.BaseHibernateTest;
-import com.borovyksv.model.helloworld.Message;
 import com.borovyksv.util.TestUtil;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 
-@RunWith(JUnit4.class)
 public class HibernateHelloWorldTest extends BaseHibernateTest {
 
     @BeforeClass
@@ -58,6 +57,14 @@ public class HibernateHelloWorldTest extends BaseHibernateTest {
         });
 
         assertNotEquals(newDate, message.getCreated());
+    }
+
+    protected List<Message> getAllMessages(Session session) {
+        return session.createCriteria(Message.class).list();
+    }
+
+    protected Message getMessage(Session session, Long id) {
+        return (Message) session.createCriteria(Message.class).add(Restrictions.eq("id", id)).uniqueResult();
     }
 
 }

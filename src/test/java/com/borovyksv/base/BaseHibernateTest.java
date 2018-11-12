@@ -5,23 +5,16 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.criterion.Restrictions;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
 @SuppressWarnings("all")
+@RunWith(JUnit4.class)
 public abstract class BaseHibernateTest {
     protected static SessionFactory sessionFactory;
-
-    protected List<Message> getAllMessages(Session session) {
-        return session.createCriteria(Message.class).list();
-    }
-
-    protected Message getMessage(Session session, Long id) {
-        return (Message) session.createCriteria(Message.class).add(Restrictions.eq("id", id)).uniqueResult();
-    }
 
     protected enum HibernateConfig {
         H2("h2.cfg.xml"), MySQL("mysql.cfg.xml");
