@@ -1,5 +1,7 @@
 package com.borovyksv.model;
 
-public interface Constants {
-    String ID_GENERATOR = "ID_GENERATOR";
+public final class Constants {
+    public static final String ID_GENERATOR = "ID_GENERATOR";
+
+    private Constants(){}
 }

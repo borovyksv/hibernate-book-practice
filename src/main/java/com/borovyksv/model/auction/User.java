@@ -19,8 +19,8 @@ import static com.borovyksv.model.auction.Address.*;
 
 @Entity
 public class User {
-    public static final String BILLING_PREFIX = "billing_";
-    public static final String SHIPPING_PREFIX = "shipping_";
+    private static final String BILLING_PREFIX = "billing_";
+    private static final String SHIPPING_PREFIX = "shipping_";
 
     @Id
     @GeneratedValue(generator = Constants.ID_GENERATOR)

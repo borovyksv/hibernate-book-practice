@@ -13,9 +13,9 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
-    public static final String STREET = "street";
-    public static final String ZIPCODE = "zipcode";
-    public static final String CITY = "city";
+    static final String STREET = "street";
+    static final String ZIPCODE = "zipcode";
+    static final String CITY = "city";
 
     private String street;
     private String zipcode;
