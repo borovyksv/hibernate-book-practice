@@ -1,6 +1,6 @@
 package com.borovyksv.base;
 
-import com.borovyksv.model.helloworld.Message;
+import com.borovyksv.model.config.SnakeCaseNamingStrategy;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -30,7 +30,9 @@ public abstract class BaseHibernateTest {
     }
 
     protected static SessionFactory getSessionFactory(HibernateConfig HibernateConfig) {
-        return new Configuration().configure(HibernateConfig.configFileName).buildSessionFactory();
+        Configuration configuration = new Configuration().configure(HibernateConfig.configFileName);
+        configuration.setPhysicalNamingStrategy(SnakeCaseNamingStrategy.INSTANCE);
+        return configuration.buildSessionFactory();
     }
 
     protected <T> T executeInTransaction(Function<Session, T> function) {
