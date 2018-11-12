@@ -10,7 +10,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Getter @Setter
+@Getter
+@Setter
 @ToString
 @EqualsAndHashCode(of = "id")
 @Entity(name = "message")
@@ -21,10 +22,8 @@ public class Message {
     private String text;
     private Payload payload;
 
-    @AttributeOverrides({
-            @AttributeOverride(name = "title", column = @Column(name = "hidden_title")),
-            @AttributeOverride(name = "data", column = @Column(name = "hidden_data"))
-    })
+    @AttributeOverride(name = "title", column = @Column(name = "hidden_title"))
+    @AttributeOverride(name = "data", column = @Column(name = "hidden_data"))
     private Payload hiddenPayload;
 
     @UpdateTimestamp
