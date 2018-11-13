@@ -1,6 +1,8 @@
 package com.borovyksv.model.auction;
 
 import com.borovyksv.base.BaseHibernateTest;
+import com.borovyksv.model.auction.zipcode.GermanZipcode;
+import com.borovyksv.model.auction.zipcode.SwissZipcode;
 import com.borovyksv.util.TestUtil;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -63,6 +65,20 @@ public class UserTestHibernate extends BaseHibernateTest {
             entityManager.remove(user);
             List<User> allUsers2 = getAllUsers(entityManager);
             assertFalse(allUsers2.contains(user));
+        });
+    }
+
+    @Test //NOTE: Attrubute Converter cause redundant dirty updates
+    public void testZipcodeConverter() {
+        executeInTransaction(entityManager -> {
+            User originalUser = TestUtil.getUser();
+            entityManager.persist(originalUser);
+            User retrievedUser = getUserById(entityManager, originalUser.getId());
+            assertTrue(retrievedUser.getHomeAddress().getZipcode() instanceof GermanZipcode);
+
+            retrievedUser.getHomeAddress().setZipcode(new SwissZipcode("1234"));
+            User retrievedUser2 = getUserById(entityManager, originalUser.getId());
+            assertTrue(retrievedUser2.getHomeAddress().getZipcode() instanceof SwissZipcode);
         });
     }
 

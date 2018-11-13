@@ -1,11 +1,14 @@
 package com.borovyksv.model.auction;
 
 import com.borovyksv.base.BaseJpaTest;
+import com.borovyksv.model.auction.zipcode.GermanZipcode;
+import com.borovyksv.model.auction.zipcode.SwissZipcode;
 import com.borovyksv.util.TestUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -15,7 +18,7 @@ public class UserTestJpa extends BaseJpaTest {
 
     @BeforeClass
     public static void init() {
-        emf = getEntityManagerFactory(JpaConfig.H2);
+        emf = getEntityManagerFactory(JpaConfig.MySQL);
     }
 
     @Test
@@ -65,6 +68,19 @@ public class UserTestJpa extends BaseJpaTest {
         });
     }
 
+    @Test //NOTE: Attrubute Converter cause redundant dirty updates
+    public void testZipcodeConverter() {
+        executeInTransaction(entityManager -> {
+            User originalUser = TestUtil.getUser();
+            entityManager.persist(originalUser);
+            User retrievedUser = getUserById(entityManager, originalUser.getId());
+            assertTrue(retrievedUser.getHomeAddress().getZipcode() instanceof GermanZipcode);
+
+            retrievedUser.getHomeAddress().setZipcode(new SwissZipcode("1234"));
+            User retrievedUser2 = getUserById(entityManager, originalUser.getId());
+            assertTrue(retrievedUser2.getHomeAddress().getZipcode() instanceof SwissZipcode);
+        });
+    }
 
     private List<User> getAllUsers(EntityManager entityManager) {
         return entityManager.createQuery("from User", User.class).getResultList();
