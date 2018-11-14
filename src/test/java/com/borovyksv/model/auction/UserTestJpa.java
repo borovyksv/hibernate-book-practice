@@ -68,7 +68,7 @@ public class UserTestJpa extends BaseJpaTest {
         });
     }
 
-    @Test //NOTE: Attrubute Converter cause redundant dirty updates
+    @Test //NOTE: Attribute Converter cause redundant dirty updates
     public void testZipcodeConverter() {
         executeInTransaction(entityManager -> {
             User originalUser = TestUtil.getUser();

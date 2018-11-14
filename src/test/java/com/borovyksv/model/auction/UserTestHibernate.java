@@ -67,8 +67,7 @@ public class UserTestHibernate extends BaseHibernateTest {
             assertFalse(allUsers2.contains(user));
         });
     }
-
-    @Test //NOTE: Attrubute Converter cause redundant dirty updates
+    @Test //NOTE: Attribute Converter cause redundant dirty updates
     public void testZipcodeConverter() {
         executeInTransaction(entityManager -> {
             User originalUser = TestUtil.getUser();
