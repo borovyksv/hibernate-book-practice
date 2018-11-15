@@ -1,78 +1,62 @@
 package com.borovyksv.model.auction;
 
 import com.borovyksv.base.BaseJpaTest;
+import com.borovyksv.model.auction.zipcode.GermanZipcode;
+import com.borovyksv.model.auction.zipcode.SwissZipcode;
 import com.borovyksv.util.TestUtil;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import javax.persistence.EntityManager;
-import java.util.List;
+import static org.junit.Assert.assertTrue;
 
-import static org.junit.Assert.*;
-
-@SuppressWarnings("all")
-public class UserTestJpa extends BaseJpaTest {
+public class UserTestJpa extends BaseJpaTest<User> {
 
     @BeforeClass
     public static void init() {
         emf = getEntityManagerFactory(JpaConfig.H2);
     }
 
-    @Test
-    public void testCreate() {
-        User user = TestUtil.getUser();
-        executeInTransaction(entityManager -> {
-            entityManager.persist(user);
-        });
-    }
 
-    @Test
-    public void testRead() {
-        executeInTransaction(entityManager -> {
-            User user = TestUtil.getUser();
-            entityManager.persist(user);
-            List<User> users = getAllUsers(entityManager);
-            System.out.println(users);
-            assertFalse(users.isEmpty());
-        });
-    }
 
-    @Test
-    public void testUpdate() {
+    @Test //NOTE: Attribute Converter cause redundant dirty updates
+    public void testZipcodeConverter() {
         executeInTransaction(entityManager -> {
             User originalUser = TestUtil.getUser();
             entityManager.persist(originalUser);
-            User retrievedUser = getUserById(entityManager, originalUser.getId());
+            User retrievedUser = getEntityById(entityManager, originalUser.getId());
+            assertTrue(retrievedUser.getHomeAddress().getZipcode() instanceof GermanZipcode);
 
-            String newUsername = "New Username";
-            retrievedUser.setFirstName(newUsername);
-            assertEquals(newUsername, originalUser.getFirstName());
-        });
-    }
-
-    @Test
-    public void testDelete() {
-        executeInTransaction(entityManager -> {
-            User user = TestUtil.getUser();
-            entityManager.persist(user);
-
-            List<User> allUsers1 = getAllUsers(entityManager);
-            assertTrue(allUsers1.contains(user));
-
-            entityManager.remove(user);
-            List<User> allUsers2 = getAllUsers(entityManager);
-            assertFalse(allUsers2.contains(user));
+            retrievedUser.getHomeAddress().setZipcode(new SwissZipcode("1234"));
+            User retrievedUser2 = getEntityById(entityManager, originalUser.getId());
+            assertTrue(retrievedUser2.getHomeAddress().getZipcode() instanceof SwissZipcode);
         });
     }
 
 
-    private List<User> getAllUsers(EntityManager entityManager) {
-        return entityManager.createQuery("from User", User.class).getResultList();
+    @Override
+    protected User getTestEntity() {
+        return TestUtil.getUser();
     }
 
-    private User getUserById(EntityManager entityManager, Long id) {
-        return entityManager.createQuery("from User where id = :id", User.class)
-                .setParameter("id", id)
-                .getSingleResult();
+    @Override
+    protected String getEntityTableName() {
+        return "User";
+    }
+
+    @Override
+    protected Long getEntityId(User entity) {
+        return entity.getId();
+    }
+
+    @Override
+    protected String getOriginalEntityValue(User originalEntity) {
+        return originalEntity.getUserName();
+    }
+
+    @Override
+    protected String updateAndGetEntityValue(User entityToUpdate) {
+        String newUsername = "New Username";
+        entityToUpdate.setUserName(newUsername);
+        return newUsername;
     }
 }

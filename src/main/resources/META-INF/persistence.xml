@@ -3,9 +3,6 @@
 
     <!--see JpaConfig.H2-->
     <persistence-unit name="H2">
-        <class>com.borovyksv.model.helloworld.Message</class>
-        <class>com.borovyksv.model.auction.User</class>
-
         <properties>
             <property name="hibernate.connection.url" value="jdbc:h2:mem:borovykdb;DB_CLOSE_DELAY=-1"/>
             <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
@@ -14,15 +11,12 @@
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
-            <property name="hibernate.physical_naming_strategy" value="com.borovyksv.model.config.SnakeCaseNamingStrategy"/>
+            <property name="hibernate.physical_naming_strategy" value="com.borovyksv.config.SnakeCaseNamingStrategy"/>
         </properties>
     </persistence-unit>
 
     <!--see JpaConfig.MySQL-->
     <persistence-unit name="MySQL">
-        <class>com.borovyksv.model.helloworld.Message</class>
-        <class>com.borovyksv.model.auction.User</class>
-
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/work"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
@@ -33,7 +27,7 @@
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.use_sql_comments" value="true"/>
             <property name="hibernate.hbm2ddl.auto" value="create"/>
-            <property name="hibernate.physical_naming_strategy" value="com.borovyksv.model.config.SnakeCaseNamingStrategy"/>
+            <property name="hibernate.physical_naming_strategy" value="com.borovyksv.config.SnakeCaseNamingStrategy"/>
         </properties>
     </persistence-unit>
 

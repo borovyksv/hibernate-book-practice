@@ -11,4 +11,4 @@
         value = "9999"
      )
 })
-package com.borovyksv.model.helloworld;
+package com.borovyksv.model;

@@ -1,11 +1,15 @@
 package com.borovyksv.util;
 
 import com.borovyksv.model.auction.Address;
+import com.borovyksv.model.auction.Item;
 import com.borovyksv.model.auction.User;
+import com.borovyksv.model.auction.zipcode.GermanZipcode;
 import com.borovyksv.model.helloworld.Message;
 import com.borovyksv.model.helloworld.Payload;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class TestUtil {
 
@@ -17,10 +21,18 @@ public class TestUtil {
         return message;
     }
 
+    public static Item getItem() {
+        return Item.builder()
+                .name("Thor Hummer")
+                .initialPrice(BigDecimal.valueOf(1_000_000))
+                .auctionEnd(LocalDateTime.now().plusMonths(1))
+                .build();
+    }
+
     public static User getUser() {
         Address address = Address.builder()
                 .street("Main")
-                .zipcode("12312")
+                .zipcode(new GermanZipcode("12312"))
                 .city("Vice")
                 .build();
         return User.builder()

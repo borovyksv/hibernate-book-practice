@@ -1,6 +1,6 @@
 package com.borovyksv.base;
 
-import com.borovyksv.model.config.SnakeCaseNamingStrategy;
+import com.borovyksv.config.SnakeCaseNamingStrategy;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
