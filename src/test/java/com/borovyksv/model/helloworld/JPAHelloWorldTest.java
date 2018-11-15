@@ -1,10 +1,10 @@
 package com.borovyksv.model.helloworld;
 
-import com.borovyksv.base.BaseJpaTest;
+import com.borovyksv.base.CrudJpaTest;
 import org.junit.BeforeClass;
 
 
-public class JPAHelloWorldTest extends BaseJpaTest<Message> {
+public class JPAHelloWorldTest extends CrudJpaTest<Message> {
 
     @BeforeClass
     public static void init() {

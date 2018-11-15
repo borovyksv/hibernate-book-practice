@@ -1,6 +1,6 @@
 package com.borovyksv.model.auction;
 
-import com.borovyksv.base.BaseJpaTest;
+import com.borovyksv.base.CrudJpaTest;
 import com.borovyksv.model.auction.zipcode.GermanZipcode;
 import com.borovyksv.model.auction.zipcode.SwissZipcode;
 import com.borovyksv.util.TestUtil;
@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class UserTestJpa extends BaseJpaTest<User> {
+public class UserTestJpa extends CrudJpaTest<User> {
 
     @BeforeClass
     public static void init() {

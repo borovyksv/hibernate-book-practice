@@ -1,9 +1,9 @@
 package com.borovyksv.model.inheritance.mappedsuperclass;
 
-import com.borovyksv.base.BaseJpaTest;
+import com.borovyksv.base.CrudJpaTest;
 import org.junit.BeforeClass;
 
-public class CreditCardJpaTest extends BaseJpaTest<CreditCard> {
+public class CreditCardJpaTest extends CrudJpaTest<CreditCard> {
 
     @BeforeClass
     public static void init() {

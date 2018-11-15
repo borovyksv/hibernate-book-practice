@@ -1,6 +1,6 @@
 package com.borovyksv.model.inheritance.tableperclass;
 
-import com.borovyksv.base.BaseJpaTest;
+import com.borovyksv.base.CrudJpaTest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertTrue;
 import static org.junit.Assert.assertFalse;
 
-public class TBankAccountJpaTest extends BaseJpaTest<TBankAccount> {
+public class TBankAccountJpaTest extends CrudJpaTest<TBankAccount> {
 
     @BeforeClass
     public static void init() {

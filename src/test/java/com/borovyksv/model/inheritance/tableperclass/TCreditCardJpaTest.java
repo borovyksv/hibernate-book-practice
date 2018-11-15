@@ -1,9 +1,9 @@
 package com.borovyksv.model.inheritance.tableperclass;
 
-import com.borovyksv.base.BaseJpaTest;
+import com.borovyksv.base.CrudJpaTest;
 import org.junit.BeforeClass;
 
-public class TCreditCardJpaTest extends BaseJpaTest<TCreditCard> {
+public class TCreditCardJpaTest extends CrudJpaTest<TCreditCard> {
 
     @BeforeClass
     public static void init() {
