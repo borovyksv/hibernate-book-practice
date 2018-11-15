@@ -1,4 +1,4 @@
-package com.borovyksv.model.part2Chapter6Inheritance;
+package com.borovyksv.model.inheritance.mappedsuperclass;
 
 import com.borovyksv.base.BaseJpaTest;
 import org.junit.BeforeClass;
