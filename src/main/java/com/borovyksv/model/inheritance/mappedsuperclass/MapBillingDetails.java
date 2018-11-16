@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 
 @MappedSuperclass
-public abstract class BillingDetails {
+public abstract class MapBillingDetails {
     public static final String OWNER = "owner";
 
     @Id

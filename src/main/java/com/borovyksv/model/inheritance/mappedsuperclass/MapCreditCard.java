@@ -7,7 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 
-import static com.borovyksv.model.inheritance.mappedsuperclass.BillingDetails.OWNER;
+import static com.borovyksv.model.inheritance.mappedsuperclass.MapBillingDetails.OWNER;
 
 @Getter
 @Setter
@@ -17,14 +17,14 @@ import static com.borovyksv.model.inheritance.mappedsuperclass.BillingDetails.OW
 
 @Entity
 @AttributeOverride(name = OWNER, column = @Column(name = "CC_" + OWNER, nullable = false))
-public class CreditCard extends BillingDetails {
+public class MapCreditCard extends MapBillingDetails {
 
     @NotNull private String cardNumber;
     @NotNull private String expMonth;
     @NotNull private String expYear;
 
     @Builder
-    public CreditCard(Long id, String owner, String cardNumber, String expMonth, String expYear) {
+    public MapCreditCard(Long id, String owner, String cardNumber, String expMonth, String expYear) {
         super(id, owner);
         this.cardNumber = cardNumber;
         this.expMonth = expMonth;
