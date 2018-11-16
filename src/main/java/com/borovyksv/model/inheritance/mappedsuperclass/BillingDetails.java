@@ -24,3 +24,16 @@ public abstract class BillingDetails {
     @NotNull
     protected String owner;
 }
+
+/**
+ * EXAMPLE:
+ * select
+ *      ID, OWNER, ACCOUNT, BANKNAME, SWIFT
+ * from
+ *      BANKACCOUNT;
+ *
+ * select
+ *      ID, CC_OWNER, CARDNUMBER, EXPMONTH, EXPYEAR
+ * from
+ *      CREDITCARD;
+ * */

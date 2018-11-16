@@ -26,3 +26,20 @@ public abstract class SBillingDetails {
     @Column(nullable = false)
     protected String owner;
 }
+/**
+ * EXAMPLE:
+ * select
+ *      ID, OWNER, EXPMONTH, EXPYEAR, CARDNUMBER,
+ *      ACCOUNT, BANKNAME, SWIFT, BD_TYPE
+ * from
+ *      BILLINGDETAILS
+ *
+ ****** To query the CreditCard subclass, Hibernate adds a restriction on the discriminator column: *****
+ *
+ * select
+ *      ID, OWNER, EXPMONTH, EXPYEAR, CARDNUMBER
+ * from
+ *      BILLINGDETAILS
+ * where
+ *      BD_TYPE='CC'
+ * */

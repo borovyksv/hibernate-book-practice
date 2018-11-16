@@ -22,3 +22,13 @@ public abstract class MBillingDetails {
     @NotNull
     protected String owner;
 }
+/**
+ * EXAMPLE:
+ * select
+ *      ID, OWNER, ACCOUNT, BANKNAME, SWIFT,
+ *      EXPMONTH, EXPYEAR, CARDNUMBER,
+ *      BD_TYPE
+ * from
+ *      BILLINGDETAILS
+ *      left outer join CREDITCARD on ID=CREDITCARD_ID
+ *      */
