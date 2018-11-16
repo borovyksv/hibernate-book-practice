@@ -1,9 +1,9 @@
-package com.borovyksv.model.part2Chapter6Inheritance;
+package com.borovyksv.model.inheritance.tableperclass;
 
-import com.borovyksv.base.BaseJpaTest;
+import com.borovyksv.base.CrudJpaTest;
 import org.junit.BeforeClass;
 
-public class BankAccountJpaTest extends BaseJpaTest<BankAccount> {
+public class TBankAccountJpaTest extends CrudJpaTest<TBankAccount> {
 
     @BeforeClass
     public static void init() {
@@ -11,8 +11,8 @@ public class BankAccountJpaTest extends BaseJpaTest<BankAccount> {
     }
 
     @Override
-    protected BankAccount getTestEntity() {
-        return BankAccount.builder()
+    protected TBankAccount getTestEntity() {
+        return TBankAccount.builder()
                 .owner("owner")
                 .account("Some bank account")
                 .bankName("World Wide Bank")
@@ -22,21 +22,21 @@ public class BankAccountJpaTest extends BaseJpaTest<BankAccount> {
 
     @Override
     protected String getEntityTableName() {
-        return "BankAccount";
+        return "TBankAccount";
     }
 
     @Override
-    protected Long getEntityId(BankAccount entity) {
+    protected Long getEntityId(TBankAccount entity) {
         return entity.getId();
     }
 
     @Override
-    protected String getOriginalEntityValue(BankAccount originalEntity) {
+    protected String getOriginalEntityValue(TBankAccount originalEntity) {
         return originalEntity.getBankName();
     }
 
     @Override
-    protected String updateAndGetEntityValue(BankAccount entityToUpdate) {
+    protected String updateAndGetEntityValue(TBankAccount entityToUpdate) {
         String newBankName = "My new Bank";
         entityToUpdate.setBankName(newBankName);
         return newBankName;

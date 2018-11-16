@@ -1,13 +1,9 @@
-package com.borovyksv.model.part2Chapter6Inheritance;
+package com.borovyksv.model.inheritance.singletable;
 
 import lombok.*;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
-
-import static com.borovyksv.model.part2Chapter6Inheritance.BillingDetails.OWNER;
 
 @Getter
 @Setter
@@ -16,15 +12,14 @@ import static com.borovyksv.model.part2Chapter6Inheritance.BillingDetails.OWNER;
 @EqualsAndHashCode(callSuper = true)
 
 @Entity
-@AttributeOverride(name = OWNER, column = @Column(name = "CC_" + OWNER, nullable = false))
-public class CreditCard extends BillingDetails {
+public class SCreditCard extends SBillingDetails {
 
     @NotNull private String cardNumber;
     @NotNull private String expMonth;
     @NotNull private String expYear;
 
     @Builder
-    public CreditCard(Long id, String owner, String cardNumber, String expMonth, String expYear) {
+    public SCreditCard(Long id, String owner, String cardNumber, String expMonth, String expYear) {
         super(id, owner);
         this.cardNumber = cardNumber;
         this.expMonth = expMonth;

@@ -1,11 +1,9 @@
-package com.borovyksv.model.part2Chapter6Inheritance;
+package com.borovyksv.model.inheritance.joins;
 
 import com.borovyksv.model.Constants;
 import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Setter @Getter
@@ -13,9 +11,10 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@MappedSuperclass
-public abstract class BillingDetails {
-    public static final String OWNER = "owner";
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+//@DiscriminatorColumn(name = "bd_type") // optional, adds extra column for table discriminators/names
+public abstract class JBillingDetails {
 
     @Id
     @GeneratedValue(generator = Constants.ID_GENERATOR)

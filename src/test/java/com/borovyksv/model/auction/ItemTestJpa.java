@@ -1,14 +1,14 @@
 package com.borovyksv.model.auction;
 
-import com.borovyksv.base.BaseJpaTest;
+import com.borovyksv.base.CrudJpaTest;
 import com.borovyksv.util.TestUtil;
 import org.junit.BeforeClass;
 
-public class ItemTestJpa extends BaseJpaTest<Item> {
+public class ItemTestJpa extends CrudJpaTest<Item> {
 
     @BeforeClass
     public static void init() {
-        emf = getEntityManagerFactory(JpaConfig.MySQL);
+        emf = getEntityManagerFactory(JpaConfig.H2);
     }
 
 
