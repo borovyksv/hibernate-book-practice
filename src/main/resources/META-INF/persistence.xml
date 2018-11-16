@@ -15,7 +15,7 @@
         </properties>
     </persistence-unit>
 
-    <!-- see JpaConfig.MySQL -->
+    <!-- see JpaConfig.MySQL-->
     <persistence-unit name="MySQL">
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/work"/>
