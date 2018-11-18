@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
 
-    <!-- see JpaConfig.H2 -->
+    <!--see JpaConfig.H2 -->
     <persistence-unit name="H2">
         <properties>
             <property name="hibernate.connection.url" value="jdbc:h2:mem:borovykdb;DB_CLOSE_DELAY=-1"/>
