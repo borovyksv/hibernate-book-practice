@@ -14,7 +14,6 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.0</version>
                 <configuration>
-                    <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
                     <source>8</source>
                     <target>8</target>
                 </configuration>
@@ -53,6 +52,12 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
             <scope>test</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M1</version>
         </dependency>
     </dependencies>
 
