@@ -24,7 +24,7 @@ public class MosItem {
     private String itemName;
 
     @ElementCollection
-    @CollectionTable(name = "Image",                          //overrides table "SosItem_images" -> "Image",
+    @CollectionTable(name = "MosItem_image",
             joinColumns = @JoinColumn(name = "item_id"))      //overrides column "SosItem_id" -> "item_id",
     @MapKeyColumn(name = "filename")                          //key
     @Column(name = "imagename")                               //value

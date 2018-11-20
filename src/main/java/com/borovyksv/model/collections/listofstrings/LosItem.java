@@ -24,7 +24,7 @@ public class LosItem {
     private String itemName;
 
     @ElementCollection
-    @CollectionTable(name = "Image",                          //overrides table "SosItem_images" -> "Image",
+    @CollectionTable(name = "LosItem_image",
             joinColumns = @JoinColumn(name = "item_id"))      //overrides column "SosItem_id" -> "item_id",
     @Column(name = "filename")                                //overrides column "images" -> "filename",
     @OrderColumn
@@ -34,7 +34,7 @@ public class LosItem {
 /**
  * EXAMPLE:
  *
- * create table Image (
+ * create table LosItem_images (
  *        item_id bigint not null,
  *         filename varchar(255),
  *         images_ORDER integer not null,
