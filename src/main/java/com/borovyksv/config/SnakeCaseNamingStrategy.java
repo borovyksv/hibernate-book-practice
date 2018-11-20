@@ -16,22 +16,21 @@ public class SnakeCaseNamingStrategy extends PhysicalNamingStrategyStandardImpl 
     }
 
     String getStringSnakeCase(String text) {
+        if(text.contains("_")) return text;
         StringBuilder sb = new StringBuilder();
         int length = text.length();
         if (length > 0) {
-            sb.append(Character.toLowerCase(text.charAt(0)));
+            sb.append(text.charAt(0));
         }
         for (int i = 1; i < length; i++) {
             char current = text.charAt(i);
-            if (Character.isUpperCase(current)) {
+            if (Character.isUpperCase(current) && i + 1 < length && !Character.isUpperCase(text.charAt(i + 1))) {
                 sb.append('_');
-                sb.append(Character.toLowerCase(current));
-            } else if(isDigit(current) && !isDigit(text.charAt(i - 1))) {
+                current = Character.toLowerCase(current);
+            } else if (isDigit(current) && !isDigit(text.charAt(i - 1))) {
                 sb.append('_');
-                sb.append(current);
-            } else {
-                sb.append(current);
             }
+            sb.append(current);
         }
         return sb.toString();
     }

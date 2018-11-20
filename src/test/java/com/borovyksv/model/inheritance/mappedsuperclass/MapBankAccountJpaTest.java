@@ -3,7 +3,7 @@ package com.borovyksv.model.inheritance.mappedsuperclass;
 import com.borovyksv.base.CrudJpaTest;
 import org.junit.BeforeClass;
 
-public class BankAccountJpaTest extends CrudJpaTest<BankAccount> {
+public class MapBankAccountJpaTest extends CrudJpaTest<MapBankAccount> {
 
     @BeforeClass
     public static void init() {
@@ -11,8 +11,8 @@ public class BankAccountJpaTest extends CrudJpaTest<BankAccount> {
     }
 
     @Override
-    protected BankAccount getTestEntity() {
-        return BankAccount.builder()
+    protected MapBankAccount getTestEntity() {
+        return MapBankAccount.builder()
                 .owner("owner")
                 .account("Some bank account")
                 .bankName("World Wide Bank")
@@ -22,21 +22,21 @@ public class BankAccountJpaTest extends CrudJpaTest<BankAccount> {
 
     @Override
     protected String getEntityTableName() {
-        return "BankAccount";
+        return "MapBankAccount";
     }
 
     @Override
-    protected Long getEntityId(BankAccount entity) {
+    protected Long getEntityId(MapBankAccount entity) {
         return entity.getId();
     }
 
     @Override
-    protected String getOriginalEntityValue(BankAccount originalEntity) {
+    protected String getOriginalEntityValue(MapBankAccount originalEntity) {
         return originalEntity.getBankName();
     }
 
     @Override
-    protected String updateAndGetEntityValue(BankAccount entityToUpdate) {
+    protected String updateAndGetEntityValue(MapBankAccount entityToUpdate) {
         String newBankName = "My new Bank";
         entityToUpdate.setBankName(newBankName);
         return newBankName;

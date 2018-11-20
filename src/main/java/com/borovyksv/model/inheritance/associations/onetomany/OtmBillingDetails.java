@@ -1,11 +1,9 @@
-package com.borovyksv.model.inheritance.mappedsuperclass;
+package com.borovyksv.model.inheritance.associations.onetomany;
 
 import com.borovyksv.model.Constants;
 import lombok.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Setter @Getter
@@ -13,9 +11,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 
-@MappedSuperclass
-public abstract class BillingDetails {
-    public static final String OWNER = "owner";
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class OtmBillingDetails {
 
     @Id
     @GeneratedValue(generator = Constants.ID_GENERATOR)
@@ -23,4 +21,7 @@ public abstract class BillingDetails {
 
     @NotNull
     protected String owner;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private OtmUser user;
 }
