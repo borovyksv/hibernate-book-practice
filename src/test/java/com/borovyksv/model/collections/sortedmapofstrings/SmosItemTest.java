@@ -16,7 +16,7 @@ public class SmosItemTest extends CrudJpaTest<SmosItem> {
 
     @BeforeClass
     public static void init() {
-        emf = getEntityManagerFactory(JpaConfig.MySQL);
+        emf = getEntityManagerFactory(JpaConfig.H2);
     }
 
     @Test

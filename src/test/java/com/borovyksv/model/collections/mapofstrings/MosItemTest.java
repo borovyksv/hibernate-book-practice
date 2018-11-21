@@ -13,7 +13,7 @@ public class MosItemTest extends CrudJpaTest<MosItem> {
 
     @BeforeClass
     public static void init() {
-        emf = getEntityManagerFactory(JpaConfig.MySQL);
+        emf = getEntityManagerFactory(JpaConfig.H2);
     }
 
     @Test
