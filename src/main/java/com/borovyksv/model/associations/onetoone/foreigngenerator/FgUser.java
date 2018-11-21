@@ -11,8 +11,8 @@ import javax.persistence.*;
 @Getter @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(exclude="address")
-@Entity(name = "USERS")
-public class User {
+@Entity
+public class FgUser {
 
     @Id
     @GeneratedValue(generator = Constants.ID_GENERATOR)
@@ -21,9 +21,9 @@ public class User {
 
     @OneToOne(  fetch = FetchType.LAZY, optional = false,
                 mappedBy = "user", cascade = CascadeType.PERSIST)
-    protected Address address;
+    protected FgAddress address;
 
-    public User(String username) {
+    public FgUser(String username) {
         this.username = username;
     }
 }

@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @EqualsAndHashCode
 @Entity
-public class Address {
+public class FgAddress {
 
     @Id
     @GeneratedValue(    generator = "addressKeyGenerator")
@@ -27,10 +27,10 @@ public class Address {
     protected String city;
 
     @OneToOne(optional = false)         // created foreign key constraint
-    @PrimaryKeyJoinColumn               // Address must have a reference to a User
-    protected User user;
+    @PrimaryKeyJoinColumn               // FgAddress must have a reference to a FgUser
+    protected FgUser user;
 
-    public Address(String street, String zipcode, String city, User user) {
+    public FgAddress(String street, String zipcode, String city, FgUser user) {
         this.street = street;
         this.zipcode = zipcode;
         this.city = city;

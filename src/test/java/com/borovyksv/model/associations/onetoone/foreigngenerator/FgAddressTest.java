@@ -5,7 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-public class AddressTest extends CrudJpaTest<Address> {
+public class FgAddressTest extends CrudJpaTest<FgAddress> {
 
     @BeforeClass
     public static void init() {
@@ -15,36 +15,36 @@ public class AddressTest extends CrudJpaTest<Address> {
     @Test
     public void testSharedPrimaryKey() {
         executeInTransaction(em ->{
-            Address address = getTestEntity();
-            User user = address.getUser();
+            FgAddress address = getTestEntity();
+            FgUser user = address.getUser();
             em.persist(user);
         });
     }
 
     @Override
-    protected Address getTestEntity() {
-        User user = new User("some Username");
-        Address address = new Address("Street", "Zipcode", "City", user);
+    protected FgAddress getTestEntity() {
+        FgUser user = new FgUser("some Username");
+        FgAddress address = new FgAddress("Street", "Zipcode", "City", user);
         user.setAddress(address);
         return address;
     }
 
     protected String getEntityTableName() {
-        return Address.class.getSimpleName();
+        return FgAddress.class.getSimpleName();
     }
 
     @Override
-    protected Long getEntityId(Address entity) {
+    protected Long getEntityId(FgAddress entity) {
         return entity.getId();
     }
 
     @Override
-    protected String getOriginalEntityValue(Address originalEntity) {
+    protected String getOriginalEntityValue(FgAddress originalEntity) {
         return originalEntity.getCity();
     }
 
     @Override
-    protected String updateAndGetEntityValue(Address entityToUpdate) {
+    protected String updateAndGetEntityValue(FgAddress entityToUpdate) {
         String updatedItemName = "new City";
         entityToUpdate.setCity(updatedItemName);
         return updatedItemName;
