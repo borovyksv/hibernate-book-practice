@@ -24,7 +24,7 @@ public class SosItem {
     private String itemName;
 
     @ElementCollection
-    @CollectionTable(name = "Image",                          //overrides table "SosItem_images" -> "Image",
+    @CollectionTable(name = "SosItem_image",
             joinColumns = @JoinColumn(name = "item_id"))      //overrides column "SosItem_id" -> "item_id",
     @Column(name = "filename")                                //overrides column "images" -> "filename",
     protected Set<String> images = new HashSet<>();
