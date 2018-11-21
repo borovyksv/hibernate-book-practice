@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Data
 @NoArgsConstructor
 @Entity
-public class Address {
+public class SpkAddress {
 
     @Id
     @GeneratedValue(generator = Constants.ID_GENERATOR)
@@ -20,7 +20,7 @@ public class Address {
     protected String zipcode;
     protected String city;
 
-    public Address(String street, String zipcode, String city) {
+    public SpkAddress(String street, String zipcode, String city) {
         this.street = street;
         this.zipcode = zipcode;
         this.city = city;

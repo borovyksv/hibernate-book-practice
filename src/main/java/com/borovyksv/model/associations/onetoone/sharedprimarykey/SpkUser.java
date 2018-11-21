@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "USERS")
-public class User {
+public class SpkUser {
 
     @Id
 //    @GeneratedValue(generator = Constants.ID_GENERATOR) //<= injects in constructor (app-assigned Id)
@@ -19,6 +19,6 @@ public class User {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @PrimaryKeyJoinColumn
-    protected Address address;
+    protected SpkAddress address;
 
 }

@@ -4,7 +4,7 @@ import com.borovyksv.base.CrudJpaTest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class AddressTest extends CrudJpaTest<Address> {
+public class SpkAddressTest extends CrudJpaTest<SpkAddress> {
 
     @BeforeClass
     public static void init() {
@@ -14,35 +14,35 @@ public class AddressTest extends CrudJpaTest<Address> {
     @Test
     public void testSharedPrimaryKey() {
         executeInTransaction(em -> {
-            Address address = getTestEntity();
-            em.persist(address);
+            SpkAddress SpkAddress = getTestEntity();
+            em.persist(SpkAddress);
 
-            User user = new User(address.getId(), "Username", address);
-            em.persist(user);
+            SpkUser SpkUser = new SpkUser(SpkAddress.getId(), "SpkUsername", SpkAddress);
+            em.persist(SpkUser);
         });
     }
 
     @Override
-    protected Address getTestEntity() {
-        return new Address("Street", "Zipcode", "City");
+    protected SpkAddress getTestEntity() {
+        return new SpkAddress("Street", "Zipcode", "City");
     }
 
     protected String getEntityTableName() {
-        return Address.class.getSimpleName();
+        return SpkAddress.class.getSimpleName();
     }
 
     @Override
-    protected Long getEntityId(Address entity) {
+    protected Long getEntityId(SpkAddress entity) {
         return entity.getId();
     }
 
     @Override
-    protected String getOriginalEntityValue(Address originalEntity) {
+    protected String getOriginalEntityValue(SpkAddress originalEntity) {
         return originalEntity.getCity();
     }
 
     @Override
-    protected String updateAndGetEntityValue(Address entityToUpdate) {
+    protected String updateAndGetEntityValue(SpkAddress entityToUpdate) {
         String updatedItemName = "new City";
         entityToUpdate.setCity(updatedItemName);
         return updatedItemName;
