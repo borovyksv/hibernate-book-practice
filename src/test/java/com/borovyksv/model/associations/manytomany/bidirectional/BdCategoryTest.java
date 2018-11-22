@@ -1,13 +1,13 @@
 package com.borovyksv.model.associations.manytomany.bidirectional;
 
-import com.borovyksv.base.BaseJpaTest;
+import com.borovyksv.base.CrudJpaTest;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class BdCategoryTest extends BaseJpaTest {
+public class BdCategoryTest extends CrudJpaTest<BdCategory> {
 
     @BeforeClass
     public static void init() {
@@ -39,4 +39,35 @@ public class BdCategoryTest extends BaseJpaTest {
             assertNotNull(anotherCategory.getId());
         });
     }
+
+    @Override
+    protected BdCategory getTestEntity() {
+        BdCategory testCategory = new BdCategory("Test Category");
+        BdItem testItem = new BdItem("Test Item");
+        testCategory.getItems().add(testItem);
+        testItem.getCategories().add(testCategory);
+        return testCategory;
+    }
+
+    protected String getEntityTableName() {
+        return BdCategory.class.getSimpleName();
+    }
+
+    @Override
+    protected Long getEntityId(BdCategory entity) {
+        return entity.getId();
+    }
+
+    @Override
+    protected String getOriginalEntityValue(BdCategory originalEntity) {
+        return originalEntity.getName();
+    }
+
+    @Override
+    protected String updateAndGetEntityValue(BdCategory entityToUpdate) {
+        String updatedItemName = "Updated Category";
+        entityToUpdate.setName(updatedItemName);
+        return updatedItemName;
+    }
+
 }
