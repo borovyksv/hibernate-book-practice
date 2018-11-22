@@ -14,7 +14,7 @@ public class OtmJtItemTest extends CrudJpaTest<OtmJtItem> {
 
     @BeforeClass
     public static void init() {
-        emf = getEntityManagerFactory(JpaConfig.MySQL);
+        emf = getEntityManagerFactory(JpaConfig.H2);
     }
 
     @Test
