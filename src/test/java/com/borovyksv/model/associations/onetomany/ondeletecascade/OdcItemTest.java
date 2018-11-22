@@ -32,7 +32,6 @@ public class OdcItemTest extends CrudJpaTest<OdcItem> {
 
         executeInTransaction(em -> {
             OdcItem entityById = getEntityById(em, id[0]);
-            Set<OdcBid> referenceToBidsBeforeDeletion = entityById.getBids();
 
             List bids = getAllBidsByItemId(em, entityById);
             Assert.assertEquals(2, bids.size());
